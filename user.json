@@ -1,0 +1,20 @@
+[
+  {
+    "tz": 1234567,
+    "name": "nnn",
+    "type": "regesh",
+    "take": false
+  },
+  {
+    "tz": 7654321,
+    "name": "hhh",
+    "type": "drama",
+    "take": false
+  },
+  {
+    "tz": 1237654,
+    "name": "sss",
+    "type": "metach",
+    "take": true
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "code": 111,
+    "name": "aaa",
+    "type": "metach",
+    "taked": true
+  },
+  {
+    "code": 222,
+    "name": "bbb",
+    "type": "drama",
+    "taked": false
+  },
+  {
+    "code": 333,
+    "name": "ccc",
+    "type": "regesh",
+    "taked": false
+  }
+]
