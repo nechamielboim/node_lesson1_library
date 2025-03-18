@@ -53,5 +53,33 @@ function takeBook(c) {
     }
 }
 
-
-module.exports = {printBook,takeBook,initBooks}
+const xlsx = require('xlsx');
+function writeXlsx2(){
+    const worksheet = xlsx.utils.json_to_sheet(arrBook);
+    const workbook = xlsx.utils.book_new();
+    xlsx.utils.book_append_sheet(workbook, worksheet, "books");
+    xlsx.writeFile(workbook, "books.xlsx");
+}
+function readUsersFromFile2() {
+    const workbook = xlsx.readFile('books.xlsx');
+    const sheetName = workbook.SheetNames[0];
+    const sheet = workbook.Sheets[sheetName];
+    const books = xlsx.utils.sheet_to_json(sheet);
+    return books;
+}
+function findUserById2(id) { 
+    flag = false
+    const books = readUsersFromFile2();
+    for (const b of books) {
+        if(b.code == id )
+        {
+            flag = true
+            console.log(b.name); 
+        }
+  
+    }
+    if(!flag){
+        console.log("not found"); 
+    }
+}
+module.exports = {printBook,takeBook,initBooks,writeXlsx2,findUserById2}

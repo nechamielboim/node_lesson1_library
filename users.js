@@ -13,6 +13,7 @@ class User{
 const arrUser = [new User(1234567,"nnn","regesh",false),new User(7654321,"hhh","drama",false),new User(1237654,"sss","metach",true)]
 
 const user = new User(1234567,"nnn","regesh",false)
+const { log } = require('console')
 const fs = require('fs')
 async function initUser() {
     try {
@@ -49,5 +50,33 @@ async function takeUser(c) {
         console.log("The error is:", err);
     }
 }
-
-module.exports = {printUser,takeUser,initUser}
+const xlsx = require('xlsx');
+function writeXlsx(){
+    const worksheet = xlsx.utils.json_to_sheet(arrUser);
+    const workbook = xlsx.utils.book_new();
+    xlsx.utils.book_append_sheet(workbook, worksheet, "users");
+    xlsx.writeFile(workbook, "users.xlsx");
+}
+function readUsersFromFile() {
+    const workbook = xlsx.readFile('users.xlsx');
+    const sheetName = workbook.SheetNames[0];
+    const sheet = workbook.Sheets[sheetName];
+    const users = xlsx.utils.sheet_to_json(sheet);
+    return users;
+}
+function findUserById(id) { 
+    flag = false
+    const users = readUsersFromFile();
+    for (const u of users) {
+        if(u.tz == id )
+        {
+            flag = true
+            console.log(u.name); 
+        }
+  
+    }
+    if(!flag){
+        console.log("not found"); 
+    }
+}
+module.exports = {printUser,takeUser,initUser,writeXlsx,findUserById}
